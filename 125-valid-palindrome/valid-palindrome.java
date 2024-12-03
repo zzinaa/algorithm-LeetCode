@@ -9,7 +9,7 @@ class Solution {
         int end = str.length() - 1;
 
         while(start <= end) {
-            if(start >= str.length() || end < 0) break;
+            // if(start >= str.length() || end < 0) break;
             if(str.charAt(start) != str.charAt(end)) return false;
             start ++;
             end --;
