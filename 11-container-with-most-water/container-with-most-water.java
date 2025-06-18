@@ -6,7 +6,7 @@ class Solution {
         int l = 0;
         int r = N - 1;
 
-        while(true) {
+        while(l <= r) {
 
             int amount = (r - l) * Math.min(height[r], height[l]);
             max = Math.max(amount, max);
@@ -16,7 +16,6 @@ class Solution {
             } else {
                 r --;
             }
-            if(l == r) break;
         }
 
         return max;
