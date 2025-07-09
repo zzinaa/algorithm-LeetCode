@@ -1,26 +1,26 @@
 class Solution {
+
+    boolean[] visited;
+
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        
         int n = rooms.size();
-        boolean[] visited = new boolean[n];
+        visited = new boolean[n];
 
         Queue<Integer> q = new LinkedList<>();
         q.offer(0);
-        visited[0] = true;
 
         while(!q.isEmpty()) {
             int cur = q.poll();
+            visited[cur] = true;
 
-            List<Integer> keys = rooms.get(cur);
-            for(int key : keys) {
-                if(visited[key]) continue;
-                q.offer(key);
-                visited[key] = true;
+            for(int i = 0; i < rooms.get(cur).size(); i ++) {
+                if(visited[rooms.get(cur).get(i)]) continue;
+                q.offer(rooms.get(cur).get(i));
             }
         }
 
-        for(boolean v : visited) {
-            if(!v) return false;
+        for(int i = 0; i < n; i ++) {
+            if(!visited[i]) return false;
         }
 
         return true;
