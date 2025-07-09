@@ -5,24 +5,23 @@ class Solution {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
         int n = rooms.size();
         visited = new boolean[n];
+        visited[0] = true;
 
-        Queue<Integer> q = new LinkedList<>();
-        q.offer(0);
+        dfs(rooms, 0);
 
-        while(!q.isEmpty()) {
-            int cur = q.poll();
-            visited[cur] = true;
-
-            for(int i = 0; i < rooms.get(cur).size(); i ++) {
-                if(visited[rooms.get(cur).get(i)]) continue;
-                q.offer(rooms.get(cur).get(i));
-            }
-        }
-
-        for(int i = 0; i < n; i ++) {
-            if(!visited[i]) return false;
+        for(boolean v : visited) {
+            if(!v) return false;
         }
 
         return true;
+    }
+
+    private void dfs(List<List<Integer>> rooms, int cur) {
+
+        for(int key : rooms.get(cur)) {
+            if(visited[key]) continue;
+            visited[key] = true;
+            dfs(rooms, key);
+        }
     }
 }
