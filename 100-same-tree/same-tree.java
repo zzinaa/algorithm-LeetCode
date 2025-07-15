@@ -27,6 +27,7 @@ class Solution {
     }
 
     private void findOutSameTree(TreeNode p, TreeNode q) {
+        if(!answer) return;
 
         if(p.val != q.val) {
             answer = false;
